@@ -22,7 +22,7 @@ export const AppProduct = () => {
   return (
     <div>
         <Header></Header>
-        <h2 className='text-center'>Formualrio</h2>
+        <h2 className='text-center'>Formulario</h2>
         <FormProduct handleAddProduct={handleAddProduct}></FormProduct>
         <h2 className='text-center'>Productos</h2>
         {
