@@ -1,27 +1,24 @@
 import React, { ChangeEvent, useState } from 'react'; // Importa React, el hook useState y el tipo ChangeEvent.
+import { useForm } from '../../hooks/useForm';
 
 export const FormComponent = () => { // Define el componente FormComponent.
 
-    const [values, setValues] = useState({ // Define el estado values para almacenar los datos del formulario.
+    const {values, handleChange, resetForm} = useForm({
         email: "",
         nombre: "",
-        edad: 0,
-    });
+        edad:0
+    })
 
-    const { email, nombre, edad } = values; // Desestructura el estado para acceder a los valores individualmente.
+    const {email, nombre, edad} = values;
 
-    const handleSubmitForm = () => { // Función que imprime los valores del formulario en consola al enviar.
-        console.log({ email, nombre, edad });
-    };
+    const handleSubmitForm = () => {
+        console.log (values);
+    }
 
-    const handleChange = (event: ChangeEvent<HTMLInputElement>) => { // Función que actualiza el estado al cambiar un input.
-        const { value, name } = event.target;
+    const handleResetForm = () => {
+        resetForm();
+    }
 
-        setValues({
-            ...values,
-            [name]: value, // Actualiza solo el campo correspondiente en el estado.
-        });
-    };
 
     return (
         <div>
@@ -55,6 +52,7 @@ export const FormComponent = () => { // Define el componente FormComponent.
             </div>
             <div>
                 <button onClick={handleSubmitForm}>Enviar</button> {/* Botón que llama a handleSubmitForm al hacer clic */}
+                <button onClick={handleResetForm}>Resetear</button>
             </div>
         </div>
     );
